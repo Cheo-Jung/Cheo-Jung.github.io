@@ -6,13 +6,13 @@
   <title>Cheo Jung — Portfolio</title>
   <style>
     :root {
-      --bg: #f5f7fb;
+      --bg: #f7f8fa;
       --surface: #ffffff;
-      --text: #0f172a;
-      --subtle: #475569;
-      --line: #e2e8f0;
-      --accent: #1d4ed8;
-      --max-width: 980px;
+      --text: #111827;
+      --subtle: #4b5563;
+      --line: #e5e7eb;
+      --accent: #0f172a;
+      --max-width: 900px;
     }
 
     * { box-sizing: border-box; }
@@ -28,51 +28,38 @@
     .wrap {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 54px 20px;
+      padding: 56px 20px;
     }
 
     .panel {
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      align-items: center;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .profile {
-      width: 108px;
-      height: 108px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #fff;
-      box-shadow: 0 2px 14px rgba(15, 23, 42, 0.14);
+      gap: 12px;
+      margin-bottom: 26px;
     }
 
     .name {
       margin: 0;
-      font-size: clamp(1.9rem, 4vw, 2.4rem);
+      font-size: clamp(1.9rem, 3.8vw, 2.6rem);
       letter-spacing: -0.02em;
     }
 
     .tagline {
       margin: 0;
       color: var(--subtle);
-      font-size: 1.02rem;
+      font-size: 1.05rem;
     }
 
     .summary {
-      margin: 6px 0 0;
+      margin: 4px 0 0;
       max-width: 70ch;
-      color: #1e293b;
     }
 
     .links {
@@ -84,84 +71,71 @@
 
     .links a {
       text-decoration: none;
-      color: #0f172a;
+      color: var(--accent);
       border: 1px solid var(--line);
       background: #fff;
       padding: 8px 12px;
       border-radius: 8px;
       font-weight: 500;
-      transition: background-color 0.18s ease, border-color 0.18s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
     .links a:hover {
-      background: #f8fafc;
-      border-color: #cbd5e1;
+      background: #f3f4f6;
+      border-color: #d1d5db;
     }
 
-    .sections {
-      margin-top: 24px;
+    .grid {
       display: grid;
-      gap: 14px;
+      gap: 16px;
+      margin-top: 18px;
     }
 
     .section {
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: #fff;
       padding: 18px;
+      background: #fff;
     }
 
     .section h2 {
       margin: 0 0 12px;
-      font-size: 1.06rem;
+      font-size: 1.1rem;
     }
 
-    .entry { margin-bottom: 14px; }
-    .entry:last-child { margin-bottom: 0; }
-
-    .entry-title {
+    .item-title {
       margin: 0;
-      font-size: 0.98rem;
       font-weight: 600;
     }
 
-    .entry-meta {
-      margin: 2px 0 6px;
+    .item-meta {
+      margin: 4px 0 8px;
       color: var(--subtle);
-      font-size: 0.93rem;
+      font-size: 0.95rem;
     }
 
-    .entry-desc {
+    .item-text {
       margin: 0;
       color: #1f2937;
-      font-size: 0.96rem;
     }
 
-    .entry-links {
-      margin-top: 6px;
-      font-size: 0.94rem;
+    .item-links {
+      margin-top: 10px;
+      font-size: 0.95rem;
     }
 
-    .entry-links a {
-      color: var(--accent);
+    .item-links a {
+      color: #1d4ed8;
       text-decoration: none;
     }
 
-    .entry-links a:hover {
+    .item-links a:hover {
       text-decoration: underline;
     }
 
     @media (min-width: 760px) {
-      .hero {
-        grid-template-columns: 120px 1fr;
-      }
-
-      .sections {
+      .grid {
         grid-template-columns: 1fr 1fr;
-      }
-
-      .section.full {
-        grid-column: 1 / -1;
       }
     }
   </style>
@@ -170,79 +144,39 @@
   <main class="wrap">
     <section class="panel">
       <header class="hero">
-        <img
-          class="profile"
-          src="https://github.com/Cheo-Jung.png?size=240"
-          alt="Portrait of Cheo Jung"
-        />
-
-        <div>
-          <h1 class="name">Cheo Jung</h1>
-          <p class="tagline">Software Engineer · New York · AI/ML Enthusiast</p>
-          <p class="summary">
-            Computer science student and builder focused on practical machine learning, software fundamentals,
-            and developer productivity. I enjoy shipping projects that combine strong engineering basics with
-            user-centered interfaces.
-          </p>
-
-          <nav class="links" aria-label="Social and contact links">
-            <a href="https://github.com/Cheo-Jung" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/cheo-jung/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="mailto:chaeung.jung@stonybrok.edu">Email</a>
-            <a href="Cheo's resume_final.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-          </nav>
-        </div>
+        <h1 class="name">Cheo Jung</h1>
+        <p class="tagline">Software Engineer · New York · AI/ML Enthusiast</p>
+        <p class="summary">
+          I build practical, user-focused software with an emphasis on clean architecture and measurable impact.
+          I enjoy developing products at the intersection of machine learning and polished web experiences.
+        </p>
       </header>
 
-      <div class="sections">
+      <nav class="links" aria-label="Social and contact links">
+        <a href="https://github.com/Cheo-Jung" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/cheo-jung/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:chaeung.jung@stonybrok.edu">Email</a>
+        <a href="Cheo's resume_final.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      </nav>
+
+      <div class="grid">
         <section class="section">
-          <h2>Education</h2>
-          <article class="entry">
-            <p class="entry-title">Stony Brook University</p>
-            <p class="entry-meta">Computer Science</p>
-            <p class="entry-desc">
-              Coursework and projects include systems programming and data structures, including CSE 220 assignments.
-            </p>
-          </article>
+          <h2>Selected Projects</h2>
+          <p class="item-title">Project Name</p>
+          <p class="item-meta">Python, PyTorch, React</p>
+          <p class="item-text">
+            Built an end-to-end application that turns complex model output into actionable product insights.
+          </p>
+          <p class="item-links"><a href="#">Demo</a> · <a href="#">Code</a></p>
         </section>
 
         <section class="section">
           <h2>Experience</h2>
-          <article class="entry">
-            <p class="entry-title">Haydn Intern</p>
-            <p class="entry-meta">Internship Project</p>
-            <p class="entry-desc">
-              Built analysis notebooks and prototypes, with a focus on practical experimentation and readable code.
-            </p>
-            <p class="entry-links"><a href="https://github.com/Cheo-Jung/Haydn_Intern" target="_blank" rel="noopener noreferrer">Repository</a></p>
-          </article>
-        </section>
-
-        <section class="section full">
-          <h2>Selected Projects</h2>
-
-          <article class="entry">
-            <p class="entry-title">AGI Project</p>
-            <p class="entry-meta">Python</p>
-            <p class="entry-desc">
-              Experimental project exploring consciousness-inspired AI ideas with references to psychoanalysis and Buddhism.
-            </p>
-            <p class="entry-links"><a href="https://github.com/Cheo-Jung/AGI_Project" target="_blank" rel="noopener noreferrer">Code</a></p>
-          </article>
-
-          <article class="entry">
-            <p class="entry-title">CSE220 Coursework Projects</p>
-            <p class="entry-meta">C++, Assembly</p>
-            <p class="entry-desc">
-              Implemented core data structures and low-level programming assignments across multiple course projects.
-            </p>
-            <p class="entry-links">
-              <a href="https://github.com/Cheo-Jung/220HW2" target="_blank" rel="noopener noreferrer">220HW2</a> ·
-              <a href="https://github.com/Cheo-Jung/CSE220_hw3" target="_blank" rel="noopener noreferrer">CSE220_hw3</a> ·
-              <a href="https://github.com/Cheo-Jung/220_hw4" target="_blank" rel="noopener noreferrer">220_hw4</a> ·
-              <a href="https://github.com/Cheo-Jung/220hw5" target="_blank" rel="noopener noreferrer">220hw5</a>
-            </p>
-          </article>
+          <p class="item-title">Company — Role</p>
+          <p class="item-meta">Dates</p>
+          <p class="item-text">
+            Improved core workflows and shipped high-quality features with a strong focus on maintainability and speed.
+          </p>
         </section>
       </div>
     </section>
