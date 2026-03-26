@@ -126,38 +126,6 @@
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    .subtabs {
-      margin-top: 18px;
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      background: #f8fafc;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 6px;
-    }
-
-    .subtab-button {
-      border: 1px solid transparent;
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--muted);
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .subtab-button.active {
-      border-color: var(--line);
-      background: #ffffff;
-      color: var(--text);
-    }
-
-    .subtab-panel { display: none; }
-    .subtab-panel.active { display: block; }
-
     .about-card {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -251,94 +219,77 @@
       </section>
 
       <section class="tab-panel" id="panel-portfolio" role="tabpanel" aria-labelledby="tab-portfolio">
-        <div class="subtabs" role="tablist" aria-label="Portfolio categories">
-          <button class="subtab-button active" id="subtab-education" role="tab" aria-selected="true" aria-controls="subpanel-education" type="button">Education</button>
-          <button class="subtab-button" id="subtab-experience" role="tab" aria-selected="false" aria-controls="subpanel-experience" type="button">Experience</button>
-          <button class="subtab-button" id="subtab-projects" role="tab" aria-selected="false" aria-controls="subpanel-projects" type="button">Projects</button>
-        </div>
-
-        <section class="subtab-panel active" id="subpanel-education" role="tabpanel" aria-labelledby="subtab-education">
-          <section class="section">
-            <h2>Education</h2>
-            <div class="list">
-              <article class="item">
-                <p class="item-title">Stony Brook University</p>
-                <p class="item-meta">Computer Science</p>
-                <p class="item-text">Academic focus on systems programming, data structures, and software engineering fundamentals.</p>
-              </article>
-            </div>
-          </section>
+        <section class="section">
+          <h2>Education</h2>
+          <div class="list">
+            <article class="item">
+              <p class="item-title">Stony Brook University</p>
+              <p class="item-meta">Computer Science</p>
+              <p class="item-text">Academic focus on systems programming, data structures, and software engineering fundamentals.</p>
+            </article>
+          </div>
         </section>
 
-        <section class="subtab-panel" id="subpanel-experience" role="tabpanel" aria-labelledby="subtab-experience">
-          <section class="section">
-            <h2>Experience</h2>
-            <div class="list">
-              <article class="item">
-                <p class="item-title">Haydn Intern</p>
-                <p class="item-meta">Internship Project</p>
-                <p class="item-text">Worked on technical prototypes and analysis notebooks to support engineering exploration and implementation.</p>
-                <p class="item-meta"><a href="https://github.com/Cheo-Jung/Haydn_Intern" target="_blank" rel="noopener noreferrer">Repository</a></p>
-              </article>
-            </div>
-          </section>
+        <section class="section">
+          <h2>Experience</h2>
+          <div class="list">
+            <article class="item">
+              <p class="item-title">Haydn Intern</p>
+              <p class="item-meta">Internship Project</p>
+              <p class="item-text">Worked on technical prototypes and analysis notebooks to support engineering exploration and implementation.</p>
+              <p class="item-meta"><a href="https://github.com/Cheo-Jung/Haydn_Intern" target="_blank" rel="noopener noreferrer">Repository</a></p>
+            </article>
+          </div>
         </section>
 
-        <section class="subtab-panel" id="subpanel-projects" role="tabpanel" aria-labelledby="subtab-projects">
-          <section class="section">
-            <h2>Projects</h2>
-            <div class="list">
-              <article class="item">
-                <p class="item-title">AGI Project</p>
-                <p class="item-meta">Python</p>
-                <p class="item-text">Experimented with AI concepts and iterative research-driven implementation.</p>
-                <p class="item-meta"><a href="https://github.com/Cheo-Jung/AGI_Project" target="_blank" rel="noopener noreferrer">Code</a></p>
-              </article>
-              <article class="item">
-                <p class="item-title">CSE220 Coursework Projects</p>
-                <p class="item-meta">C++, Assembly</p>
-                <p class="item-text">Built low-level and data-structure-focused assignments across multiple course projects.</p>
-                <p class="item-meta">
-                  <a href="https://github.com/Cheo-Jung/220HW2" target="_blank" rel="noopener noreferrer">220HW2</a> ·
-                  <a href="https://github.com/Cheo-Jung/CSE220_hw3" target="_blank" rel="noopener noreferrer">CSE220_hw3</a> ·
-                  <a href="https://github.com/Cheo-Jung/220_hw4" target="_blank" rel="noopener noreferrer">220_hw4</a> ·
-                  <a href="https://github.com/Cheo-Jung/220hw5" target="_blank" rel="noopener noreferrer">220hw5</a>
-                </p>
-              </article>
-            </div>
-          </section>
+        <section class="section">
+          <h2>Projects</h2>
+          <div class="list">
+            <article class="item">
+              <p class="item-title">AGI Project</p>
+              <p class="item-meta">Python</p>
+              <p class="item-text">Experimented with AI concepts and iterative research-driven implementation.</p>
+              <p class="item-meta"><a href="https://github.com/Cheo-Jung/AGI_Project" target="_blank" rel="noopener noreferrer">Code</a></p>
+            </article>
+            <article class="item">
+              <p class="item-title">CSE220 Coursework Projects</p>
+              <p class="item-meta">C++, Assembly</p>
+              <p class="item-text">Built low-level and data-structure-focused assignments across multiple course projects.</p>
+              <p class="item-meta">
+                <a href="https://github.com/Cheo-Jung/220HW2" target="_blank" rel="noopener noreferrer">220HW2</a> ·
+                <a href="https://github.com/Cheo-Jung/CSE220_hw3" target="_blank" rel="noopener noreferrer">CSE220_hw3</a> ·
+                <a href="https://github.com/Cheo-Jung/220_hw4" target="_blank" rel="noopener noreferrer">220_hw4</a> ·
+                <a href="https://github.com/Cheo-Jung/220hw5" target="_blank" rel="noopener noreferrer">220hw5</a>
+              </p>
+            </article>
+          </div>
         </section>
       </section>
     </section>
   </main>
 
   <script>
-    function wireTabs(tabSelector, panelSelector) {
-      const tabs = document.querySelectorAll(tabSelector);
-      const panels = document.querySelectorAll(panelSelector);
+    const tabs = document.querySelectorAll(".tab-button");
+    const panels = document.querySelectorAll(".tab-panel");
 
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const target = tab.getAttribute("aria-controls");
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.getAttribute("aria-controls");
 
-          tabs.forEach((button) => {
-            button.classList.remove("active");
-            button.setAttribute("aria-selected", "false");
-          });
-
-          panels.forEach((panel) => {
-            panel.classList.remove("active");
-          });
-
-          tab.classList.add("active");
-          tab.setAttribute("aria-selected", "true");
-          document.getElementById(target).classList.add("active");
+        tabs.forEach((button) => {
+          button.classList.remove("active");
+          button.setAttribute("aria-selected", "false");
         });
-      });
-    }
 
-    wireTabs(".tab-button", ".tab-panel");
-    wireTabs(".subtab-button", ".subtab-panel");
+        panels.forEach((panel) => {
+          panel.classList.remove("active");
+        });
+
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        document.getElementById(target).classList.add("active");
+      });
+    });
   </script>
 </body>
 </html>
