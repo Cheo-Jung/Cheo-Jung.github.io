@@ -206,6 +206,28 @@
       color: #1f2937;
     }
 
+    .skill-badges {
+      margin: 8px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      padding: 3px 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
     .item a {
       color: var(--accent);
       text-decoration: none;
@@ -261,8 +283,13 @@
             <div class="list">
               <article class="item">
                 <p class="item-title">Stony Brook University</p>
-                <p class="item-meta">Computer Science</p>
-                <p class="item-text">Academic focus on systems programming, data structures, and software engineering fundamentals.</p>
+                <p class="item-meta">B.S. in Computer Science · New York, USA</p>
+                <p class="item-text">Focused on AI/Data Science, software engineering, and systems fundamentals. Built a strong base in algorithmic problem-solving, object-oriented development, and writing production-ready code through team projects and technical coursework.</p>
+              </article>
+              <article class="item">
+                <p class="item-title">Core Focus Areas</p>
+                <p class="item-meta">Machine Learning · Data Structures · Software Design</p>
+                <p class="item-text">Applied classroom theory to practical implementations including model experimentation, backend logic design, and end-to-end debugging workflows. Emphasis on turning abstract CS concepts into usable applications.</p>
               </article>
             </div>
           </section>
@@ -274,9 +301,13 @@
             <div class="list">
               <article class="item">
                 <p class="item-title">Haydn Intern</p>
-                <p class="item-meta">Internship Project</p>
-                <p class="item-text">Worked on technical prototypes and analysis notebooks to support engineering exploration and implementation.</p>
-                <p class="item-meta"><a href="https://github.com/Cheo-Jung/Haydn_Intern" target="_blank" rel="noopener noreferrer">Repository</a></p>
+                <p class="item-meta">Software Engineering Intern · Project-based</p>
+                <p class="item-text">Developed and refined technical prototypes to validate product ideas quickly. Organized experiment outputs, improved notebook/code readability, and documented implementation decisions so work could be handed off and scaled more effectively.</p>
+              </article>
+              <article class="item">
+                <p class="item-title">Independent AI/ML Builder</p>
+                <p class="item-meta">Self-directed · Ongoing</p>
+                <p class="item-text">Designing and shipping personal AI projects with a focus on practical impact, maintainable architecture, and iterative improvement. Combining research-style experimentation with user-facing software development.</p>
               </article>
             </div>
           </section>
@@ -288,20 +319,36 @@
             <div class="list">
               <article class="item">
                 <p class="item-title">AGI Project</p>
-                <p class="item-meta">Python</p>
-                <p class="item-text">Experimented with AI concepts and iterative research-driven implementation.</p>
+                <p class="item-meta">Python · AI Research Prototyping</p>
+                <p class="item-text">Built an experimental project exploring intelligence-oriented AI ideas beyond simple prompt/response pipelines. Iterated on architecture and implementation details to test how different computational structures influence reasoning behavior.</p>
+                <div class="skill-badges" aria-label="AGI project skills">
+                  <span class="skill-badge">Python</span>
+                  <span class="skill-badge">PyTorch</span>
+                  <span class="skill-badge">NLP</span>
+                </div>
                 <p class="item-meta"><a href="https://github.com/Cheo-Jung/AGI_Project" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
               <article class="item">
-                <p class="item-title">CSE220 Coursework Projects</p>
-                <p class="item-meta">C++, Assembly</p>
-                <p class="item-text">Built low-level and data-structure-focused assignments across multiple course projects.</p>
-                <p class="item-meta">
-                  <a href="https://github.com/Cheo-Jung/220HW2" target="_blank" rel="noopener noreferrer">220HW2</a> ·
-                  <a href="https://github.com/Cheo-Jung/CSE220_hw3" target="_blank" rel="noopener noreferrer">CSE220_hw3</a> ·
-                  <a href="https://github.com/Cheo-Jung/220_hw4" target="_blank" rel="noopener noreferrer">220_hw4</a> ·
-                  <a href="https://github.com/Cheo-Jung/220hw5" target="_blank" rel="noopener noreferrer">220hw5</a>
-                </p>
+                <p class="item-title">Haydn Internship Project</p>
+                <p class="item-meta">Python · Prototyping · Analysis</p>
+                <p class="item-text">Created internship deliverables that combined exploratory analysis and implementation, with clear documentation and reproducible workflows for future collaborators.</p>
+                <div class="skill-badges" aria-label="Haydn project skills">
+                  <span class="skill-badge">Python</span>
+                  <span class="skill-badge">Data Analysis</span>
+                  <span class="skill-badge">Prototyping</span>
+                </div>
+              </article>
+              <article class="item">
+                <p class="item-title">Personal Portfolio Website</p>
+                <p class="item-meta">HTML · CSS · JavaScript</p>
+                <p class="item-text">Designed and iterated on a clean, tab-based portfolio experience that highlights education, experience, and project work in a recruiter-friendly format.</p>
+                <div class="skill-badges" aria-label="Portfolio website skills">
+                  <span class="skill-badge">HTML</span>
+                  <span class="skill-badge">CSS</span>
+                  <span class="skill-badge">JavaScript</span>
+                  <span class="skill-badge">UI</span>
+                </div>
+                <p class="item-meta"><a href="https://github.com/Cheo-Jung/Cheo-Jung.github.io" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
             </div>
           </section>
