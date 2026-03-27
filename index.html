@@ -392,6 +392,34 @@
     .hidden {
       display: none;
     }
+
+    .restore-panel {
+      margin-top: 12px;
+      border-top: 1px dashed #bfdbfe;
+      padding-top: 10px;
+      display: none;
+    }
+
+    .restore-panel.active {
+      display: block;
+    }
+
+    .restore-note {
+      margin: 0 0 8px;
+      font-size: 0.82rem;
+      color: #475569;
+    }
+
+    .restore-output {
+      width: 100%;
+      min-height: 84px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      font: inherit;
+      resize: vertical;
+      background: #fff;
+    }
   </style>
 </head>
 <body>
@@ -453,6 +481,12 @@
             <p class="matrix-label">Matrix Output</p>
             <div class="matrix-wrap">
               <div class="matrix-grid" id="matrix-grid" aria-live="polite"></div>
+            </div>
+            <button class="action-button" id="restoreInput" type="button">Restore to Input-Like Form</button>
+            <div class="restore-panel" id="restore-panel">
+              <p class="restore-note" id="restore-note"></p>
+              <textarea class="restore-output" id="restore-output" readonly></textarea>
+              <a class="action-button hidden" id="downloadRestoredFile" download>Download Restored File</a>
             </div>
             <button class="action-button" id="backToInput" type="button">← Back to New Input</button>
           </div>
@@ -594,6 +628,17 @@
     const matrixGrid = document.getElementById("matrix-grid");
     const fileInput = document.getElementById("fileInput");
     const stringInput = document.getElementById("stringInput");
+    const restorePanel = document.getElementById("restore-panel");
+    const restoreOutput = document.getElementById("restore-output");
+    const restoreNote = document.getElementById("restore-note");
+    const downloadRestoredFile = document.getElementById("downloadRestoredFile");
+
+    const matrixState = {
+      mode: null,
+      values: [],
+      fileName: "",
+      downloadUrl: "",
+    };
 
     function resetModeButtons() {
       modeFile.classList.remove("active");
@@ -617,19 +662,45 @@
     function renderMatrix(values) {
       matrixGrid.innerHTML = "";
       const colSize = 8;
-      const rows = Math.ceil(values.length / colSize);
+      const previewLimit = 256;
+      const previewValues = values.slice(0, previewLimit);
+      const rows = Math.ceil(previewValues.length / colSize);
       matrixGrid.style.gridTemplateColumns = `repeat(${colSize}, 40px)`;
       matrixGrid.style.gridTemplateRows = `repeat(${rows || 1}, 34px)`;
 
-      values.forEach((value) => {
+      previewValues.forEach((value) => {
         const cell = document.createElement("div");
         cell.className = "matrix-cell";
         cell.textContent = value.toString().padStart(3, "0");
         matrixGrid.appendChild(cell);
       });
+
+      if (values.length > previewLimit) {
+        const cell = document.createElement("div");
+        cell.className = "matrix-cell";
+        cell.textContent = "...";
+        matrixGrid.appendChild(cell);
+      }
     }
 
-    function showMatrixOnly(values) {
+    function clearRestoreState() {
+      restorePanel.classList.remove("active");
+      restoreOutput.value = "";
+      restoreNote.textContent = "";
+      if (matrixState.downloadUrl) {
+        URL.revokeObjectURL(matrixState.downloadUrl);
+      }
+      matrixState.downloadUrl = "";
+      downloadRestoredFile.classList.add("hidden");
+      downloadRestoredFile.removeAttribute("href");
+      downloadRestoredFile.removeAttribute("download");
+    }
+
+    function showMatrixOnly(values, mode, fileName = "") {
+      matrixState.mode = mode;
+      matrixState.values = values;
+      matrixState.fileName = fileName;
+      clearRestoreState();
       renderMatrix(values.length ? values : [0]);
       inputSelector.classList.add("hidden");
       panelFileInput.classList.remove("active");
@@ -652,15 +723,54 @@
     document.getElementById("generateFromString").addEventListener("click", () => {
       const value = stringInput.value || "";
       const bytes = Array.from(value).map((char) => char.charCodeAt(0));
-      showMatrixOnly(bytes);
+      showMatrixOnly(bytes, "string");
     });
 
     document.getElementById("generateFromFile").addEventListener("click", async () => {
       const selected = fileInput.files && fileInput.files[0];
       if (!selected) return;
       const content = await selected.arrayBuffer();
-      const view = new Uint8Array(content).slice(0, 128);
-      showMatrixOnly(Array.from(view));
+      const view = new Uint8Array(content);
+      showMatrixOnly(Array.from(view), "file", selected.name);
+    });
+
+    function decodeToString(values) {
+      if (!values.length) return "";
+      const chunkSize = 4096;
+      let output = "";
+      for (let i = 0; i < values.length; i += chunkSize) {
+        const chunk = values.slice(i, i + chunkSize);
+        output += String.fromCharCode(...chunk);
+      }
+      return output;
+    }
+
+    document.getElementById("restoreInput").addEventListener("click", () => {
+      clearRestoreState();
+      const values = matrixState.values || [];
+      restorePanel.classList.add("active");
+
+      if (!values.length) {
+        restoreNote.textContent = "No matrix values to restore yet.";
+        return;
+      }
+
+      if (matrixState.mode === "string") {
+        restoreOutput.value = decodeToString(values);
+        restoreNote.textContent = "String mode is fully reversible because each cell is the original character code.";
+        return;
+      }
+
+      const uint = new Uint8Array(values);
+      const textPreview = new TextDecoder("utf-8", { fatal: false }).decode(uint);
+      restoreOutput.value = textPreview;
+      restoreNote.textContent = "File mode restores exact bytes. Text preview may look broken for binary files, so use download for accurate recovery.";
+
+      const blob = new Blob([uint], { type: "application/octet-stream" });
+      matrixState.downloadUrl = URL.createObjectURL(blob);
+      downloadRestoredFile.href = matrixState.downloadUrl;
+      downloadRestoredFile.download = `restored-${matrixState.fileName || "input.bin"}`;
+      downloadRestoredFile.classList.remove("hidden");
     });
 
     document.getElementById("backToInput").addEventListener("click", () => {
@@ -669,6 +779,10 @@
       resetModeButtons();
       fileInput.value = "";
       stringInput.value = "";
+      matrixState.mode = null;
+      matrixState.values = [];
+      matrixState.fileName = "";
+      clearRestoreState();
     });
   </script>
 </body>
