@@ -194,63 +194,77 @@
       color: #475569;
     }
 
-    .mini-lab-controls {
+    .mini-lab-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-lab-input {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      font-size: 0.86rem;
+      color: #1e293b;
+      background: #fff;
+    }
+
+    .mini-lab-actions {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 10px;
     }
 
     .mini-lab-button {
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      color: #334155;
+      border: 1px solid #93c5fd;
+      background: #eff6ff;
+      color: #1d4ed8;
       border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      padding: 7px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
       cursor: pointer;
     }
 
-    .mini-lab-button.active {
-      border-color: #93c5fd;
-      background: #eff6ff;
-      color: #1d4ed8;
+    .mini-lab-note {
+      margin: 0;
+      font-size: 0.78rem;
+      color: #64748b;
     }
 
     .mini-lab-result {
-      margin: 0;
-      font-size: 0.9rem;
+      margin-top: 2px;
+      border: 1px solid #dbeafe;
+      background: #f8fbff;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.86rem;
       color: #334155;
     }
 
-    .mini-lab-bars {
-      margin-top: 10px;
-      display: grid;
-      gap: 8px;
+    .mini-lab-meta {
+      margin: 0 0 8px;
     }
 
-    .mini-lab-row {
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      color: #475569;
+    .mini-lab-table-wrap {
+      overflow-x: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #fff;
     }
 
-    .mini-lab-track {
-      height: 7px;
-      background: #e2e8f0;
-      border-radius: 999px;
-      overflow: hidden;
+    .mini-lab-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.76rem;
     }
 
-    .mini-lab-fill {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #60a5fa, #2563eb);
-      transition: width 0.25s ease;
+    .mini-lab-table td {
+      border: 1px solid #f1f5f9;
+      padding: 3px 5px;
+      text-align: right;
     }
 
     .section h2 {
@@ -349,30 +363,22 @@
           </p>
         </div>
         <div class="mini-lab" aria-label="Mini AI Lab">
-          <p class="mini-lab-title">Mini AI Lab · How each AI approach works</p>
+          <p class="mini-lab-title">Mini AI Lab · Any input → Matrix</p>
           <p class="mini-lab-intro">
-            Rule-based AI follows hand-written if-then rules. Neural Network AI learns patterns from many examples.
+            Upload an image/audio/text file (or type text directly), then convert it into a numeric matrix representation.
           </p>
-          <div class="mini-lab-controls" role="group" aria-label="AI approach options">
-            <button class="mini-lab-button active" data-mode="rule" type="button">Rule-based AI (if-then rules)</button>
-            <button class="mini-lab-button" data-mode="nn" type="button">Neural Network AI (learns from data)</button>
-            <button class="mini-lab-button" data-mode="hybrid" type="button">Hybrid (rules + learned model)</button>
+          <div class="mini-lab-grid">
+            <input class="mini-lab-input" id="mini-lab-file" type="file" aria-label="Upload a file" />
+            <textarea class="mini-lab-input" id="mini-lab-text" rows="3" placeholder="Or type a string here to convert into a matrix..."></textarea>
+            <div class="mini-lab-actions">
+              <button class="mini-lab-button" id="mini-lab-convert" type="button">Convert to Matrix</button>
+              <p class="mini-lab-note">Files are processed in your browser only.</p>
+            </div>
           </div>
-          <p class="mini-lab-result" id="mini-lab-result">
-            Rule-based AI uses explicit if-then logic, so decisions are easy to explain and debug.
-          </p>
-          <div class="mini-lab-bars" aria-label="Model behavior indicators">
-            <div class="mini-lab-row">
-              <span>Interpretability</span>
-              <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-interpretability"></div></div>
-            </div>
-            <div class="mini-lab-row">
-              <span>Adaptability</span>
-              <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-adaptability"></div></div>
-            </div>
-            <div class="mini-lab-row">
-              <span>Robustness</span>
-              <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-robustness"></div></div>
+          <div class="mini-lab-result" id="mini-lab-result" aria-live="polite">
+            <p class="mini-lab-meta">Ready. Choose a file or type text, then click “Convert to Matrix”.</p>
+            <div class="mini-lab-table-wrap">
+              <table class="mini-lab-table"></table>
             </div>
           </div>
         </div>
@@ -504,52 +510,138 @@
     wireTabs(".tab-button", ".tab-panel");
     wireTabs(".subtab-button", ".subtab-panel");
 
-    const miniLabProfiles = {
-      rule: {
-        text: "Rule-based AI uses explicit if-then logic, so decisions are easy to explain and debug.",
-        interpretability: 92,
-        adaptability: 45,
-        robustness: 68
-      },
-      nn: {
-        text: "Neural Network AI learns from many examples and adapts well, but its internal reasoning is harder to interpret.",
-        interpretability: 48,
-        adaptability: 90,
-        robustness: 74
-      },
-      hybrid: {
-        text: "Hybrid AI combines rule logic and learned models to balance clarity with flexible performance.",
-        interpretability: 78,
-        adaptability: 82,
-        robustness: 88
-      }
-    };
-
-    const miniLabButtons = document.querySelectorAll(".mini-lab-button");
+    const miniLabFile = document.getElementById("mini-lab-file");
+    const miniLabText = document.getElementById("mini-lab-text");
+    const miniLabConvert = document.getElementById("mini-lab-convert");
     const miniLabResult = document.getElementById("mini-lab-result");
-    const barInterpretability = document.getElementById("bar-interpretability");
-    const barAdaptability = document.getElementById("bar-adaptability");
-    const barRobustness = document.getElementById("bar-robustness");
 
-    function renderMiniLab(mode) {
-      const profile = miniLabProfiles[mode];
-      if (!profile) return;
-
-      miniLabResult.textContent = profile.text;
-      barInterpretability.style.width = `${profile.interpretability}%`;
-      barAdaptability.style.width = `${profile.adaptability}%`;
-      barRobustness.style.width = `${profile.robustness}%`;
+    function chunkArray(values, rowSize) {
+      const rows = [];
+      for (let i = 0; i < values.length; i += rowSize) {
+        rows.push(values.slice(i, i + rowSize));
+      }
+      return rows;
     }
 
-    miniLabButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        miniLabButtons.forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        renderMiniLab(button.dataset.mode);
-      });
-    });
+    function summarizeMatrix(matrix) {
+      const flattened = matrix.flat();
+      if (!flattened.length) return { min: 0, max: 0, mean: 0 };
+      const min = Math.min(...flattened);
+      const max = Math.max(...flattened);
+      const mean = flattened.reduce((sum, value) => sum + value, 0) / flattened.length;
+      return { min, max, mean };
+    }
 
-    renderMiniLab("rule");
+    function renderMatrixResult(label, matrix) {
+      const previewRows = matrix.slice(0, 8).map((row) => row.slice(0, 12));
+      const cols = matrix[0] ? matrix[0].length : 0;
+      const stats = summarizeMatrix(matrix);
+
+      const meta = `<p class="mini-lab-meta"><strong>${label}</strong> · shape ${matrix.length} × ${cols} · min ${stats.min.toFixed(2)} · max ${stats.max.toFixed(2)} · mean ${stats.mean.toFixed(2)}</p>`;
+      const rowsHtml = previewRows
+        .map((row) => `<tr>${row.map((value) => `<td>${Number(value).toFixed(2)}</td>`).join("")}</tr>`)
+        .join("");
+
+      miniLabResult.innerHTML = `
+        ${meta}
+        <div class="mini-lab-table-wrap">
+          <table class="mini-lab-table">${rowsHtml || "<tr><td>Empty matrix</td></tr>"}</table>
+        </div>
+      `;
+    }
+
+    async function imageFileToMatrix(file) {
+      const bitmap = await createImageBitmap(file);
+      const size = 16;
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(bitmap, 0, 0, size, size);
+      const { data } = ctx.getImageData(0, 0, size, size);
+      const values = [];
+      for (let i = 0; i < data.length; i += 4) {
+        const gray = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
+        values.push(gray);
+      }
+      return chunkArray(values, size);
+    }
+
+    async function audioFileToMatrix(file) {
+      const arrayBuffer = await file.arrayBuffer();
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const audioBuffer = await audioContext.decodeAudioData(arrayBuffer.slice(0));
+      const channel = audioBuffer.getChannelData(0);
+      const frameSize = Math.max(1, Math.floor(channel.length / 128));
+      const features = [];
+      for (let i = 0; i < channel.length; i += frameSize) {
+        let sum = 0;
+        const end = Math.min(i + frameSize, channel.length);
+        for (let j = i; j < end; j += 1) {
+          sum += Math.abs(channel[j]);
+        }
+        features.push(sum / (end - i));
+      }
+      audioContext.close();
+      return chunkArray(features.slice(0, 256), 16);
+    }
+
+    async function textToMatrix(text) {
+      const normalized = text || "";
+      const values = Array.from(normalized).map((ch) => ch.charCodeAt(0) / 255);
+      return chunkArray(values.slice(0, 256), 16);
+    }
+
+    async function binaryFileToMatrix(file) {
+      const arrayBuffer = await file.arrayBuffer();
+      const bytes = Array.from(new Uint8Array(arrayBuffer)).map((byte) => byte / 255);
+      return chunkArray(bytes.slice(0, 256), 16);
+    }
+
+    async function convertToMatrix() {
+      try {
+        const file = miniLabFile.files && miniLabFile.files[0];
+        const text = miniLabText.value.trim();
+
+        if (!file && !text) {
+          miniLabResult.innerHTML = '<p class="mini-lab-meta">Please upload a file or type text first.</p>';
+          return;
+        }
+
+        if (text) {
+          const matrix = await textToMatrix(text);
+          renderMatrixResult("Text input (character code matrix)", matrix);
+          return;
+        }
+
+        const type = file.type || "";
+        if (type.startsWith("image/")) {
+          const matrix = await imageFileToMatrix(file);
+          renderMatrixResult(`Image file (${file.name})`, matrix);
+          return;
+        }
+
+        if (type.startsWith("audio/")) {
+          const matrix = await audioFileToMatrix(file);
+          renderMatrixResult(`Audio file (${file.name})`, matrix);
+          return;
+        }
+
+        if (type.startsWith("text/")) {
+          const fileText = await file.text();
+          const matrix = await textToMatrix(fileText);
+          renderMatrixResult(`Text file (${file.name})`, matrix);
+          return;
+        }
+
+        const matrix = await binaryFileToMatrix(file);
+        renderMatrixResult(`Binary file (${file.name})`, matrix);
+      } catch (error) {
+        miniLabResult.innerHTML = `<p class="mini-lab-meta">Conversion failed: ${error.message}</p>`;
+      }
+    }
+
+    miniLabConvert.addEventListener("click", convertToMatrix);
   </script>
 </body>
 </html>
