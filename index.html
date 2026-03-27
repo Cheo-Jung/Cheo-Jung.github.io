@@ -188,6 +188,12 @@
       color: #0f172a;
     }
 
+    .mini-lab-intro {
+      margin: 0 0 10px;
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
     .mini-lab-controls {
       display: flex;
       flex-wrap: wrap;
@@ -341,29 +347,32 @@
           <p>
             I want to study Computer Science and AI because I believe they are the path to understanding—and eventually creating—artificial consciousness. Human experiences, including what we see, hear, feel, touch, and taste, can be represented as numerical data such as matrices and tensors. If we can design the right functions to connect and process that data, I believe artificial consciousness may become possible. While most modern AI is built on NLP-based Transformer models, I also want to explore alternative approaches and help expand the future of intelligence research.
           </p>
-          <div class="mini-lab" aria-label="Mini AI Lab">
-            <p class="mini-lab-title">Mini AI Lab · Select an approach</p>
-            <div class="mini-lab-controls" role="group" aria-label="AI approach options">
-              <button class="mini-lab-button active" data-mode="rule" type="button">Rule-based</button>
-              <button class="mini-lab-button" data-mode="nn" type="button">NN-style</button>
-              <button class="mini-lab-button" data-mode="hybrid" type="button">Hybrid</button>
+        </div>
+        <div class="mini-lab" aria-label="Mini AI Lab">
+          <p class="mini-lab-title">Mini AI Lab · How each AI approach works</p>
+          <p class="mini-lab-intro">
+            Rule-based AI follows hand-written if-then rules. Neural Network AI learns patterns from many examples.
+          </p>
+          <div class="mini-lab-controls" role="group" aria-label="AI approach options">
+            <button class="mini-lab-button active" data-mode="rule" type="button">Rule-based AI (if-then rules)</button>
+            <button class="mini-lab-button" data-mode="nn" type="button">Neural Network AI (learns from data)</button>
+            <button class="mini-lab-button" data-mode="hybrid" type="button">Hybrid (rules + learned model)</button>
+          </div>
+          <p class="mini-lab-result" id="mini-lab-result">
+            Rule-based AI uses explicit if-then logic, so decisions are easy to explain and debug.
+          </p>
+          <div class="mini-lab-bars" aria-label="Model behavior indicators">
+            <div class="mini-lab-row">
+              <span>Interpretability</span>
+              <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-interpretability"></div></div>
             </div>
-            <p class="mini-lab-result" id="mini-lab-result">
-              Rule-based prioritizes interpretability and predictable behavior for fast validation.
-            </p>
-            <div class="mini-lab-bars" aria-label="Model behavior indicators">
-              <div class="mini-lab-row">
-                <span>Interpretability</span>
-                <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-interpretability"></div></div>
-              </div>
-              <div class="mini-lab-row">
-                <span>Adaptability</span>
-                <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-adaptability"></div></div>
-              </div>
-              <div class="mini-lab-row">
-                <span>Robustness</span>
-                <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-robustness"></div></div>
-              </div>
+            <div class="mini-lab-row">
+              <span>Adaptability</span>
+              <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-adaptability"></div></div>
+            </div>
+            <div class="mini-lab-row">
+              <span>Robustness</span>
+              <div class="mini-lab-track"><div class="mini-lab-fill" id="bar-robustness"></div></div>
             </div>
           </div>
         </div>
@@ -497,19 +506,19 @@
 
     const miniLabProfiles = {
       rule: {
-        text: "Rule-based prioritizes interpretability and predictable behavior for fast validation.",
+        text: "Rule-based AI uses explicit if-then logic, so decisions are easy to explain and debug.",
         interpretability: 92,
         adaptability: 45,
         robustness: 68
       },
       nn: {
-        text: "NN-style emphasizes adaptability and pattern learning from data-rich signals.",
+        text: "Neural Network AI learns from many examples and adapts well, but its internal reasoning is harder to interpret.",
         interpretability: 48,
         adaptability: 90,
         robustness: 74
       },
       hybrid: {
-        text: "Hybrid combines structured logic with learned representations for balanced decision-making.",
+        text: "Hybrid AI combines rule logic and learned models to balance clarity with flexible performance.",
         interpretability: 78,
         adaptability: 82,
         robustness: 88
