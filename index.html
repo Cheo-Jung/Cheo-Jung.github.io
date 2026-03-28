@@ -173,8 +173,110 @@
       font-size: 0.98rem;
     }
 
+    .expand-panel {
+      margin-top: 10px;
+    }
+
+    .expand-panel p {
+      margin: 0;
+    }
+
+    .expand-panel .item-meta {
+      margin: 10px 0 0;
+    }
+
+    .expand-panel > .item-meta:first-child {
+      margin-top: 0;
+    }
+
+    .expand-panel .item-meta a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .expand-panel .item-meta a:hover {
+      text-decoration: underline;
+    }
+
+    .text-expand-btn {
+      margin-top: 8px;
+      padding: 0;
+      border: 0;
+      background: none;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .text-expand-btn:hover {
+      color: #334155;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .matrix-lab-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      margin: 0 0 0;
+      padding: 0;
+      border: 0;
+      background: none;
+      font: inherit;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #1e293b;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .matrix-lab-toggle:hover {
+      color: var(--accent);
+    }
+
+    .matrix-lab-toggle .chevron {
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+
+    .matrix-lab-toggle[aria-expanded="true"] .chevron {
+      transform: rotate(180deg);
+    }
+
+    .matrix-lab-inner {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .matrix-lab-inner[hidden] {
+      display: none !important;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .matrix-lab-inner > .matrix-note:first-child {
+      margin-top: 0;
+    }
+
     .section h2 {
       margin: 0 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+
+    .section.about-card h2 {
+      color: #1e293b;
+      font-weight: 600;
       font-size: 1.05rem;
       letter-spacing: 0.01em;
     }
@@ -192,6 +294,7 @@
       margin: 0;
       font-weight: 600;
       font-size: 1rem;
+      color: #1e293b;
     }
 
     .item-meta {
@@ -202,8 +305,9 @@
 
     .item-text {
       margin: 0;
-      font-size: 0.95rem;
-      color: #1f2937;
+      font-size: 0.98rem;
+      color: #1e293b;
+      line-height: 1.6;
     }
 
     .skill-badges {
@@ -236,27 +340,40 @@
     .item a:hover { text-decoration: underline; }
 
     .matrix-lab {
-      margin-top: 20px;
+      margin-top: 18px;
       border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
       border-radius: 12px;
-      background: #ffffff;
-      padding: 16px;
+      background: #f8fbff;
+      padding: 16px 16px 14px;
     }
 
     .matrix-title {
       margin: 0;
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #1e293b;
+      letter-spacing: 0;
     }
 
     .matrix-note {
-      margin: 6px 0 0;
-      font-size: 0.92rem;
-      color: #334155;
+      margin: 10px 0 0;
+      font-size: 0.98rem;
+      color: #1e293b;
+      line-height: 1.6;
     }
 
     .matrix-note strong {
-      color: #0f172a;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .matrix-lab label {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: #1e293b;
     }
 
     .input-selector,
@@ -272,11 +389,11 @@
 
     .input-button,
     .action-button {
-      border: 1px solid #cbd5e1;
+      border: 1px solid var(--line);
       border-radius: 8px;
-      background: #f8fafc;
-      color: #0f172a;
-      font-size: 0.9rem;
+      background: #ffffff;
+      color: var(--text);
+      font-size: 0.95rem;
       font-weight: 600;
       padding: 7px 12px;
       cursor: pointer;
@@ -284,13 +401,13 @@
 
     .action-button {
       margin-top: 10px;
-      background: #eff6ff;
-      border-color: #bfdbfe;
-      color: #1d4ed8;
+      background: #ffffff;
+      border-color: var(--line);
+      color: var(--accent);
     }
 
     .input-button.active {
-      background: #eff6ff;
+      background: #f8fbff;
       border-color: #93c5fd;
       color: #1d4ed8;
     }
@@ -312,19 +429,21 @@
 
     .string-input {
       min-height: 96px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid var(--line);
       border-radius: 8px;
       padding: 10px;
       resize: vertical;
+      font-size: 0.98rem;
+      color: #1e293b;
     }
 
     .matrix-result {
       margin-top: 14px;
       display: none;
-      border: 1px solid #dbeafe;
+      border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 12px;
-      background: #f8fbff;
+      padding: 14px 14px 12px;
+      background: #ffffff;
     }
 
     .matrix-result.active {
@@ -333,11 +452,11 @@
 
     .matrix-label {
       margin: 0 0 10px;
-      color: #334155;
-      font-size: 0.85rem;
+      color: #1e293b;
+      font-size: 0.98rem;
       font-weight: 600;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
+      letter-spacing: 0;
+      text-transform: none;
     }
 
     .matrix-wrap {
@@ -395,7 +514,7 @@
 
     .restore-panel {
       margin-top: 12px;
-      border-top: 1px dashed #bfdbfe;
+      border-top: 1px dashed var(--line);
       padding-top: 10px;
       display: none;
     }
@@ -406,17 +525,19 @@
 
     .restore-note {
       margin: 0 0 8px;
-      font-size: 0.82rem;
-      color: #475569;
+      font-size: 0.98rem;
+      color: #1e293b;
     }
 
     .restore-output {
       width: 100%;
       min-height: 84px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid var(--line);
       border-radius: 8px;
       padding: 8px;
       font: inherit;
+      font-size: 0.98rem;
+      color: #1e293b;
       resize: vertical;
       background: #fff;
     }
@@ -433,8 +554,7 @@
         </div>
       </header>
 
-      <p class="bio">Stony Brook Computer Science graduate, specialized in AI & Data Science</p>
-      <p class="bio">Focusing on building practical software and machine-learning projects with clean code, clear architecture, and user-centered outcomes</p>
+      <p class="bio">Stony Brook CS (AI & Data Science). Building practical software and ML projects with clear architecture and user-centered outcomes.</p>
 
       <nav class="links" aria-label="Profile links">
         <a href="https://github.com/Cheo-Jung" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -451,13 +571,23 @@
       <section class="tab-panel active" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
         <div class="about-card">
           <p>
-            I want to study Computer Science and AI because I believe they are the path to understanding—and eventually creating—artificial consciousness. Human experiences, including what we see, hear, feel, touch, and taste, can be represented as numerical data such as matrices and tensors. If we can design the right functions to connect and process that data, I believe artificial consciousness may become possible. While most modern AI is built on NLP-based Transformer models, I also want to explore alternative approaches and help expand the future of intelligence research.
+            I study Computer Science and AI because I see them as a path toward understanding—and eventually creating—artificial consciousness.
           </p>
+          <div id="about-more" class="expand-panel" hidden>
+            <p>
+              Human experience can be represented as numerical data (matrices, tensors). With the right functions to connect and process that data, artificial consciousness may become possible. Most AI today is Transformer-based; I also want to explore other approaches and contribute to intelligence research.
+            </p>
+          </div>
+          <button type="button" class="text-expand-btn" id="about-toggle" aria-expanded="false" aria-controls="about-more">Show more</button>
         </div>
         <section class="matrix-lab" aria-label="Any input to matrix">
-          <p class="matrix-title">Any Input → Matrix</p>
+          <button type="button" class="matrix-lab-toggle" id="matrix-lab-toggle" aria-expanded="false" aria-controls="matrix-lab-inner">
+            <span>Mini lab · Any input → matrix</span>
+            <span class="chevron" aria-hidden="true">▼</span>
+          </button>
+          <div id="matrix-lab-inner" class="matrix-lab-inner" hidden>
           <p class="matrix-note">
-            <strong>Why this matters:</strong> turns any kind of information into AI-ready numbers.
+            <strong>Why this matters:</strong> turns any kind of information into AI-ready numbers, matrix.
           </p>
 
           <div class="input-selector" id="input-selector">
@@ -490,6 +620,7 @@
             </div>
             <button class="action-button" id="backToInput" type="button">← Back to New Input</button>
           </div>
+          </div>
         </section>
       </section>
 
@@ -501,18 +632,26 @@
         </div>
 
         <section class="subtab-panel active" id="subpanel-education" role="tabpanel" aria-labelledby="subtab-education">
-          <section class="section">
+          <section class="section about-card">
             <h2>Education</h2>
             <div class="list">
               <article class="item">
                 <p class="item-title">Stony Brook University</p>
                 <p class="item-meta">B.S. in Computer Science · New York, USA</p>
-                <p class="item-text">Focused on AI/Data Science, software engineering, and systems fundamentals. Built a strong base in algorithmic problem-solving, object-oriented development, and writing production-ready code through team projects and technical coursework.</p>
+                <p class="item-text">AI/Data Science, software engineering, and systems—algorithms, OOP, and production-style work through team projects.</p>
+                <div id="edu-sbu-more" class="expand-panel" hidden>
+                  <p class="item-text">Built a strong base in algorithmic problem-solving, object-oriented development, and writing production-ready code through team projects and technical coursework.</p>
+                </div>
+                <button type="button" class="text-expand-btn" aria-expanded="false" aria-controls="edu-sbu-more">Show more</button>
               </article>
               <article class="item">
                 <p class="item-title">Core Focus Areas</p>
                 <p class="item-meta">Machine Learning · Data Structures · Software Design</p>
-                <p class="item-text">Applied classroom theory to practical implementations including model experimentation, backend logic design, and end-to-end debugging workflows. Emphasis on turning abstract CS concepts into usable applications.</p>
+                <p class="item-text">Coursework applied to models, backends, and debugging—turning abstract CS into usable software.</p>
+                <div id="edu-core-more" class="expand-panel" hidden>
+                  <p class="item-text">Applied classroom theory to practical implementations including model experimentation, backend logic design, and end-to-end debugging workflows. Emphasis on turning abstract CS concepts into usable applications.</p>
+                </div>
+                <button type="button" class="text-expand-btn" aria-expanded="false" aria-controls="edu-core-more">Show more</button>
                 <div class="skill-badges" aria-label="Core focus technologies">
                   <span class="skill-badge">Python</span>
                   <span class="skill-badge">C</span>
@@ -529,43 +668,60 @@
         </section>
 
         <section class="subtab-panel" id="subpanel-experience" role="tabpanel" aria-labelledby="subtab-experience">
-          <section class="section">
+          <section class="section about-card">
             <h2>Experience</h2>
             <div class="list">
               <article class="item">
                 <p class="item-title">Haydn Intern</p>
                 <p class="item-meta">Software Engineering Intern · Project-based</p>
-                <p class="item-text">Developed and refined technical prototypes to validate product ideas quickly. Organized experiment outputs, improved notebook/code readability, and documented implementation decisions so work could be handed off and scaled more effectively.</p>
-                <p class="item-meta"><a href="https://www.haydn.ai/" target="_blank" rel="noopener noreferrer">https://www.haydn.ai/</a></p>
+                <p class="item-text">Prototypes to validate ideas quickly; cleaner notebooks and docs so work could scale and hand off.</p>
+                <div id="exp-haydn-more" class="expand-panel" hidden>
+                  <p class="item-text">Developed and refined technical prototypes to validate product ideas quickly. Organized experiment outputs, improved notebook/code readability, and documented implementation decisions so work could be handed off and scaled more effectively.</p>
+                  <p class="item-meta"><a href="https://www.haydn.ai/" target="_blank" rel="noopener noreferrer">haydn.ai</a></p>
+                </div>
+                <button type="button" class="text-expand-btn" aria-expanded="false" aria-controls="exp-haydn-more">Show more</button>
               </article>
               <article class="item">
                 <p class="item-title">Independent AI/ML Builder</p>
                 <p class="item-meta">Self-directed · Ongoing</p>
-                <p class="item-text">Designing and shipping personal AI projects with a focus on practical impact, maintainable architecture, and iterative improvement. Combining research-style experimentation with user-facing software development.</p>
+                <p class="item-text">Personal AI projects with practical impact, solid architecture, and steady iteration.</p>
+                <div id="exp-indie-more" class="expand-panel" hidden>
+                  <p class="item-text">Combining research-style experimentation with user-facing software development.</p>
+                </div>
+                <button type="button" class="text-expand-btn" aria-expanded="false" aria-controls="exp-indie-more">Show more</button>
               </article>
             </div>
           </section>
         </section>
 
         <section class="subtab-panel" id="subpanel-projects" role="tabpanel" aria-labelledby="subtab-projects">
-          <section class="section">
+          <section class="section about-card">
             <h2>Projects</h2>
             <div class="list">
               <article class="item">
                 <p class="item-title">AGI Project</p>
                 <p class="item-meta">Python · AI Research Prototyping</p>
-                <p class="item-text">Built an experimental project exploring intelligence-oriented AI ideas beyond simple prompt/response pipelines. Iterated on architecture and implementation details to test how different computational structures influence reasoning behavior.</p>
+                <p class="item-text">Experimental intelligence-oriented AI beyond simple prompt/response pipelines.</p>
+                <div id="proj-agi-more" class="expand-panel" hidden>
+                  <p class="item-text">Iterated on architecture and implementation to test how different computational structures influence reasoning behavior.</p>
+                  <p class="item-meta"><a href="https://github.com/Cheo-Jung/AGI_Project" target="_blank" rel="noopener noreferrer">Code</a></p>
+                </div>
+                <button type="button" class="text-expand-btn" aria-expanded="false" aria-controls="proj-agi-more">Show more</button>
                 <div class="skill-badges" aria-label="AGI project skills">
                   <span class="skill-badge">Python</span>
                   <span class="skill-badge">PyTorch</span>
                   <span class="skill-badge">NLP</span>
                 </div>
-                <p class="item-meta"><a href="https://github.com/Cheo-Jung/AGI_Project" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
               <article class="item">
                 <p class="item-title">S_predict</p>
                 <p class="item-meta">Python · Time-Series Modeling · Forecasting</p>
-                <p class="item-text">Built a stock prediction pipeline focused on turning raw historical market data into reproducible forecasting experiments. The project covers practical data preparation, feature structuring, and model iteration so trends can be evaluated with clearer assumptions and less manual trial-and-error. I emphasized readable experiment flow and modular code structure to make it easier to compare model behavior over different windows and parameters.</p>
+                <p class="item-text">Built a stock prediction pipeline focused on turning raw historical market data into reproducible forecasting experiments.</p>
+                <div id="proj-sp-more" class="expand-panel" hidden>
+                  <p class="item-text">The project covers practical data preparation, feature structuring, and model iteration so trends can be evaluated with clearer assumptions and less manual trial-and-error. I emphasized readable experiment flow and modular code structure to make it easier to compare model behavior over different windows and parameters.</p>
+                  <p class="item-meta"><a href="https://github.com/Cheo-Jung/S_predict" target="_blank" rel="noopener noreferrer">Code</a></p>
+                </div>
+                <button type="button" class="text-expand-btn" aria-expanded="false" aria-controls="proj-sp-more">Show more</button>
                 <div class="skill-badges" aria-label="S_predict skills">
                   <span class="skill-badge">Python</span>
                   <span class="skill-badge">Pandas</span>
@@ -573,31 +729,37 @@
                   <span class="skill-badge">Forecasting</span>
                   <span class="skill-badge">Data Pipeline</span>
                 </div>
-                <p class="item-meta"><a href="https://github.com/Cheo-Jung/S_predict" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
               <article class="item">
                 <p class="item-title">go_Stock</p>
                 <p class="item-meta">Stock Modeling · Data Workflow · Practical Experimentation</p>
-                <p class="item-text">Built this project to test practical stock analysis ideas with a focus on clean data flow, repeatable experiments, and decision-friendly outputs. The goal is to move from raw market signals to structured comparisons that help evaluate trends, risk assumptions, and strategy behavior more clearly. I designed it as an iterative playground where modeling logic and implementation quality can improve together over time.</p>
+                <p class="item-text">Built to test practical stock analysis ideas with clean data flow, repeatable experiments, and decision-friendly outputs.</p>
+                <div id="proj-go-more" class="expand-panel" hidden>
+                  <p class="item-text">The goal is to move from raw market signals to structured comparisons that help evaluate trends, risk assumptions, and strategy behavior more clearly. I designed it as an iterative playground where modeling logic and implementation quality can improve together over time.</p>
+                  <p class="item-meta"><a href="https://github.com/Cheo-Jung/go_Stock" target="_blank" rel="noopener noreferrer">Code</a></p>
+                </div>
+                <button type="button" class="text-expand-btn" aria-expanded="false" aria-controls="proj-go-more">Show more</button>
                 <div class="skill-badges" aria-label="go_Stock skills">
                   <span class="skill-badge">Stock Analysis</span>
                   <span class="skill-badge">Data Processing</span>
                   <span class="skill-badge">Model Iteration</span>
                   <span class="skill-badge">Workflow Design</span>
                 </div>
-                <p class="item-meta"><a href="https://github.com/Cheo-Jung/go_Stock" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
               <article class="item">
                 <p class="item-title">Personal Portfolio Website</p>
                 <p class="item-meta">HTML · CSS · JavaScript</p>
-                <p class="item-text">Designed and iterated on a clean, tab-based portfolio experience that highlights education, experience, and project work in a recruiter-friendly format.</p>
+                <p class="item-text">Tab-based portfolio highlighting education, experience, and projects.</p>
+                <div id="proj-site-more" class="expand-panel" hidden>
+                  <p class="item-meta"><a href="https://github.com/Cheo-Jung/Cheo-Jung.github.io" target="_blank" rel="noopener noreferrer">Code</a></p>
+                </div>
+                <button type="button" class="text-expand-btn" aria-expanded="false" aria-controls="proj-site-more">Show more</button>
                 <div class="skill-badges" aria-label="Portfolio website skills">
                   <span class="skill-badge">HTML</span>
                   <span class="skill-badge">CSS</span>
                   <span class="skill-badge">JavaScript</span>
                   <span class="skill-badge">UI</span>
                 </div>
-                <p class="item-meta"><a href="https://github.com/Cheo-Jung/Cheo-Jung.github.io" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
             </div>
           </section>
@@ -633,6 +795,27 @@
 
     wireTabs(".tab-button", ".tab-panel");
     wireTabs(".subtab-button", ".subtab-panel");
+
+    document.querySelectorAll(".text-expand-btn").forEach((btn) => {
+      const id = btn.getAttribute("aria-controls");
+      if (!id) return;
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      btn.addEventListener("click", () => {
+        const show = panel.hidden;
+        panel.hidden = !show;
+        btn.setAttribute("aria-expanded", String(show));
+        btn.textContent = show ? "Show less" : "Show more";
+      });
+    });
+
+    const matrixLabToggle = document.getElementById("matrix-lab-toggle");
+    const matrixLabInner = document.getElementById("matrix-lab-inner");
+    matrixLabToggle.addEventListener("click", () => {
+      const show = matrixLabInner.hidden;
+      matrixLabInner.hidden = !show;
+      matrixLabToggle.setAttribute("aria-expanded", String(show));
+    });
 
     const inputSelector = document.getElementById("input-selector");
     const modeFile = document.getElementById("mode-file");
