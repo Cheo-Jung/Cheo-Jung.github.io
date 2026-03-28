@@ -564,26 +564,27 @@
               </article>
               <article class="item">
                 <p class="item-title">S_predict</p>
-                <p class="item-meta">Python · Time-Series Modeling · Forecasting</p>
-                <p class="item-text">Built a stock prediction pipeline focused on turning raw historical market data into reproducible forecasting experiments. The project covers practical data preparation, feature structuring, and model iteration so trends can be evaluated with clearer assumptions and less manual trial-and-error. I emphasized readable experiment flow and modular code structure to make it easier to compare model behavior over different windows and parameters.</p>
+                <p class="item-meta">Python · MVP Prediction Stack · Offline Runnable</p>
+                <p class="item-text">README 기준으로, 이 프로젝트는 제한된 환경에서도 돌아가도록 dependency를 최소화한 stock predictor MVP입니다. `train_mvp.py`에서 방향성 분류(기본) 또는 수익률 회귀를 학습하고, `predict_mvp.py`로 최신 예측을 수행하며, `api_mvp.py`로 `/health`, `/predict`, `/meta`와 내장 GUI(`/`)를 제공합니다. 데이터는 `close, volume` 컬럼 CSV를 넣을 수도 있고, 기본적으로는 deterministic synthetic 데이터로 재현 가능한 테스트를 할 수 있습니다. 또한 threshold 기반 신뢰도 지표와 walk-forward 검증을 포함해 방향성 성능을 점검하도록 설계되어 있습니다.</p>
                 <div class="skill-badges" aria-label="S_predict skills">
                   <span class="skill-badge">Python</span>
-                  <span class="skill-badge">Pandas</span>
-                  <span class="skill-badge">NumPy</span>
-                  <span class="skill-badge">Forecasting</span>
-                  <span class="skill-badge">Data Pipeline</span>
+                  <span class="skill-badge">MVP Modeling</span>
+                  <span class="skill-badge">Directional Classifier</span>
+                  <span class="skill-badge">Walk-Forward Eval</span>
+                  <span class="skill-badge">HTTP API</span>
                 </div>
                 <p class="item-meta"><a href="https://github.com/Cheo-Jung/S_predict" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
               <article class="item">
                 <p class="item-title">go_Stock</p>
-                <p class="item-meta">Stock Modeling · Data Workflow · Practical Experimentation</p>
-                <p class="item-text">Built this project to test practical stock analysis ideas with a focus on clean data flow, repeatable experiments, and decision-friendly outputs. The goal is to move from raw market signals to structured comparisons that help evaluate trends, risk assumptions, and strategy behavior more clearly. I designed it as an iterative playground where modeling logic and implementation quality can improve together over time.</p>
+                <p class="item-meta">LLM + Transformer · Stock/Crypto Price Generation</p>
+                <p class="item-text">README 기준으로, 이 프로젝트는 과거 가격 시계열과 뉴스 텍스트를 결합해 미래 가격을 생성하는 생성형 모델 실험입니다. 주요 구조는 가격 인코더(Transformer Encoder), 뉴스 임베딩(BERT), 통합 디코더로 구성되며, yfinance 기반 데이터 수집과 자기회귀적 생성 방식을 설명하고 있습니다. 실행 방식도 명시되어 있어 Streamlit GUI 실행과 CLI 실행 흐름을 모두 제공합니다. README에는 생성 결과는 투자 판단 전에 충분한 검증이 필요하다는 주의사항과, 뉴스 API 연동·다중 종목 학습 같은 개선 방향도 함께 정리되어 있습니다.</p>
                 <div class="skill-badges" aria-label="go_Stock skills">
-                  <span class="skill-badge">Stock Analysis</span>
+                  <span class="skill-badge">Transformer</span>
+                  <span class="skill-badge">BERT</span>
                   <span class="skill-badge">Data Processing</span>
-                  <span class="skill-badge">Model Iteration</span>
-                  <span class="skill-badge">Workflow Design</span>
+                  <span class="skill-badge">Autoregressive Gen</span>
+                  <span class="skill-badge">Streamlit</span>
                 </div>
                 <p class="item-meta"><a href="https://github.com/Cheo-Jung/go_Stock" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
