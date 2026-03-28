@@ -234,6 +234,192 @@
     }
 
     .item a:hover { text-decoration: underline; }
+
+    .matrix-lab {
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 16px;
+    }
+
+    .matrix-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .matrix-note {
+      margin: 6px 0 0;
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .matrix-note strong {
+      color: #0f172a;
+    }
+
+    .input-selector,
+    .input-panel {
+      margin-top: 14px;
+    }
+
+    .input-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .input-button,
+    .action-button {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      color: #0f172a;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 7px 12px;
+      cursor: pointer;
+    }
+
+    .action-button {
+      margin-top: 10px;
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: #1d4ed8;
+    }
+
+    .input-button.active {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #1d4ed8;
+    }
+
+    .input-panel {
+      display: none;
+    }
+
+    .input-panel.active {
+      display: block;
+    }
+
+    .string-input,
+    .file-input {
+      width: 100%;
+      margin-top: 8px;
+      font: inherit;
+    }
+
+    .string-input {
+      min-height: 96px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px;
+      resize: vertical;
+    }
+
+    .matrix-result {
+      margin-top: 14px;
+      display: none;
+      border: 1px solid #dbeafe;
+      border-radius: 10px;
+      padding: 12px;
+      background: #f8fbff;
+    }
+
+    .matrix-result.active {
+      display: block;
+    }
+
+    .matrix-label {
+      margin: 0 0 10px;
+      color: #334155;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .matrix-wrap {
+      position: relative;
+      padding: 8px 16px;
+      overflow-x: auto;
+    }
+
+    .matrix-wrap::before,
+    .matrix-wrap::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      border: 2px solid #94a3b8;
+    }
+
+    .matrix-wrap::before {
+      left: 0;
+      border-right: 0;
+      border-radius: 6px 0 0 6px;
+    }
+
+    .matrix-wrap::after {
+      right: 0;
+      border-left: 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .matrix-grid {
+      display: grid;
+      gap: 6px;
+      min-width: max-content;
+    }
+
+    .matrix-cell {
+      width: 40px;
+      height: 34px;
+      border: 1px solid #dbeafe;
+      border-radius: 6px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      color: #1e3a8a;
+      font-weight: 600;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .restore-panel {
+      margin-top: 12px;
+      border-top: 1px dashed #bfdbfe;
+      padding-top: 10px;
+      display: none;
+    }
+
+    .restore-panel.active {
+      display: block;
+    }
+
+    .restore-note {
+      margin: 0 0 8px;
+      font-size: 0.82rem;
+      color: #475569;
+    }
+
+    .restore-output {
+      width: 100%;
+      min-height: 84px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      font: inherit;
+      resize: vertical;
+      background: #fff;
+    }
   </style>
 </head>
 <body>
@@ -268,6 +454,43 @@
             I want to study Computer Science and AI because I believe they are the path to understanding—and eventually creating—artificial consciousness. Human experiences, including what we see, hear, feel, touch, and taste, can be represented as numerical data such as matrices and tensors. If we can design the right functions to connect and process that data, I believe artificial consciousness may become possible. While most modern AI is built on NLP-based Transformer models, I also want to explore alternative approaches and help expand the future of intelligence research.
           </p>
         </div>
+        <section class="matrix-lab" aria-label="Any input to matrix">
+          <p class="matrix-title">Any Input → Matrix</p>
+          <p class="matrix-note">
+            <strong>Why this matters:</strong> turns any kind of information into AI-ready numbers.
+          </p>
+
+          <div class="input-selector" id="input-selector">
+            <button class="input-button" id="mode-file" type="button">Select File</button>
+            <button class="input-button" id="mode-string" type="button">String Input</button>
+          </div>
+
+          <div class="input-panel" id="panel-file-input">
+            <label for="fileInput">Select File</label>
+            <input class="file-input" id="fileInput" type="file" />
+            <button class="action-button" id="generateFromFile" type="button">Generate Matrix</button>
+          </div>
+
+          <div class="input-panel" id="panel-string-input">
+            <label for="stringInput">Enter Text</label>
+            <textarea class="string-input" id="stringInput" placeholder="Type any input and convert it to a matrix..."></textarea>
+            <button class="action-button" id="generateFromString" type="button">Generate Matrix</button>
+          </div>
+
+          <div class="matrix-result" id="matrix-result">
+            <p class="matrix-label">Matrix Output</p>
+            <div class="matrix-wrap">
+              <div class="matrix-grid" id="matrix-grid" aria-live="polite"></div>
+            </div>
+            <button class="action-button" id="restoreInput" type="button">Restore to Input-Like Form</button>
+            <div class="restore-panel" id="restore-panel">
+              <p class="restore-note" id="restore-note"></p>
+              <textarea class="restore-output" id="restore-output" readonly></textarea>
+              <a class="action-button hidden" id="downloadRestoredFile" download>Download Restored File</a>
+            </div>
+            <button class="action-button" id="backToInput" type="button">← Back to New Input</button>
+          </div>
+        </section>
       </section>
 
       <section class="tab-panel" id="panel-portfolio" role="tabpanel" aria-labelledby="tab-portfolio">
@@ -340,14 +563,30 @@
                 <p class="item-meta"><a href="https://github.com/Cheo-Jung/AGI_Project" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
               <article class="item">
-                <p class="item-title">Haydn Internship Project</p>
-                <p class="item-meta">Python · Prototyping · Analysis</p>
-                <p class="item-text">Created internship deliverables that combined exploratory analysis and implementation, with clear documentation and reproducible workflows for future collaborators.</p>
-                <div class="skill-badges" aria-label="Haydn project skills">
+                <p class="item-title">S_predict</p>
+                <p class="item-meta">Python · MVP Prediction Stack · Offline Runnable</p>
+                <p class="item-text">README 기준으로, 이 프로젝트는 제한된 환경에서도 돌아가도록 dependency를 최소화한 stock predictor MVP입니다. `train_mvp.py`에서 방향성 분류(기본) 또는 수익률 회귀를 학습하고, `predict_mvp.py`로 최신 예측을 수행하며, `api_mvp.py`로 `/health`, `/predict`, `/meta`와 내장 GUI(`/`)를 제공합니다. 데이터는 `close, volume` 컬럼 CSV를 넣을 수도 있고, 기본적으로는 deterministic synthetic 데이터로 재현 가능한 테스트를 할 수 있습니다. 또한 threshold 기반 신뢰도 지표와 walk-forward 검증을 포함해 방향성 성능을 점검하도록 설계되어 있습니다.</p>
+                <div class="skill-badges" aria-label="S_predict skills">
                   <span class="skill-badge">Python</span>
-                  <span class="skill-badge">Data Analysis</span>
-                  <span class="skill-badge">Prototyping</span>
+                  <span class="skill-badge">MVP Modeling</span>
+                  <span class="skill-badge">Directional Classifier</span>
+                  <span class="skill-badge">Walk-Forward Eval</span>
+                  <span class="skill-badge">HTTP API</span>
                 </div>
+                <p class="item-meta"><a href="https://github.com/Cheo-Jung/S_predict" target="_blank" rel="noopener noreferrer">Code</a></p>
+              </article>
+              <article class="item">
+                <p class="item-title">go_Stock</p>
+                <p class="item-meta">LLM + Transformer · Stock/Crypto Price Generation</p>
+                <p class="item-text">README 기준으로, 이 프로젝트는 과거 가격 시계열과 뉴스 텍스트를 결합해 미래 가격을 생성하는 생성형 모델 실험입니다. 주요 구조는 가격 인코더(Transformer Encoder), 뉴스 임베딩(BERT), 통합 디코더로 구성되며, yfinance 기반 데이터 수집과 자기회귀적 생성 방식을 설명하고 있습니다. 실행 방식도 명시되어 있어 Streamlit GUI 실행과 CLI 실행 흐름을 모두 제공합니다. README에는 생성 결과는 투자 판단 전에 충분한 검증이 필요하다는 주의사항과, 뉴스 API 연동·다중 종목 학습 같은 개선 방향도 함께 정리되어 있습니다.</p>
+                <div class="skill-badges" aria-label="go_Stock skills">
+                  <span class="skill-badge">Transformer</span>
+                  <span class="skill-badge">BERT</span>
+                  <span class="skill-badge">Data Processing</span>
+                  <span class="skill-badge">Autoregressive Gen</span>
+                  <span class="skill-badge">Streamlit</span>
+                </div>
+                <p class="item-meta"><a href="https://github.com/Cheo-Jung/go_Stock" target="_blank" rel="noopener noreferrer">Code</a></p>
               </article>
               <article class="item">
                 <p class="item-title">Personal Portfolio Website</p>
@@ -395,6 +634,172 @@
 
     wireTabs(".tab-button", ".tab-panel");
     wireTabs(".subtab-button", ".subtab-panel");
+
+    const inputSelector = document.getElementById("input-selector");
+    const modeFile = document.getElementById("mode-file");
+    const modeString = document.getElementById("mode-string");
+    const panelFileInput = document.getElementById("panel-file-input");
+    const panelStringInput = document.getElementById("panel-string-input");
+    const matrixResult = document.getElementById("matrix-result");
+    const matrixGrid = document.getElementById("matrix-grid");
+    const fileInput = document.getElementById("fileInput");
+    const stringInput = document.getElementById("stringInput");
+    const restorePanel = document.getElementById("restore-panel");
+    const restoreOutput = document.getElementById("restore-output");
+    const restoreNote = document.getElementById("restore-note");
+    const downloadRestoredFile = document.getElementById("downloadRestoredFile");
+
+    const matrixState = {
+      mode: null,
+      values: [],
+      fileName: "",
+      downloadUrl: "",
+    };
+
+    function resetModeButtons() {
+      modeFile.classList.remove("active");
+      modeString.classList.remove("active");
+      panelFileInput.classList.remove("active");
+      panelStringInput.classList.remove("active");
+    }
+
+    function setInputMode(mode) {
+      resetModeButtons();
+      if (mode === "file") {
+        modeFile.classList.add("active");
+        panelFileInput.classList.add("active");
+      }
+      if (mode === "string") {
+        modeString.classList.add("active");
+        panelStringInput.classList.add("active");
+      }
+    }
+
+    function renderMatrix(values) {
+      matrixGrid.innerHTML = "";
+      const colSize = 8;
+      const previewLimit = 256;
+      const previewValues = values.slice(0, previewLimit);
+      const rows = Math.ceil(previewValues.length / colSize);
+      matrixGrid.style.gridTemplateColumns = `repeat(${colSize}, 40px)`;
+      matrixGrid.style.gridTemplateRows = `repeat(${rows || 1}, 34px)`;
+
+      previewValues.forEach((value) => {
+        const cell = document.createElement("div");
+        cell.className = "matrix-cell";
+        cell.textContent = value.toString().padStart(3, "0");
+        matrixGrid.appendChild(cell);
+      });
+
+      if (values.length > previewLimit) {
+        const cell = document.createElement("div");
+        cell.className = "matrix-cell";
+        cell.textContent = "...";
+        matrixGrid.appendChild(cell);
+      }
+    }
+
+    function clearRestoreState() {
+      restorePanel.classList.remove("active");
+      restoreOutput.value = "";
+      restoreNote.textContent = "";
+      if (matrixState.downloadUrl) {
+        URL.revokeObjectURL(matrixState.downloadUrl);
+      }
+      matrixState.downloadUrl = "";
+      downloadRestoredFile.classList.add("hidden");
+      downloadRestoredFile.removeAttribute("href");
+      downloadRestoredFile.removeAttribute("download");
+    }
+
+    function showMatrixOnly(values, mode, fileName = "") {
+      matrixState.mode = mode;
+      matrixState.values = values;
+      matrixState.fileName = fileName;
+      clearRestoreState();
+      renderMatrix(values.length ? values : [0]);
+      inputSelector.classList.add("hidden");
+      panelFileInput.classList.remove("active");
+      panelStringInput.classList.remove("active");
+      matrixResult.classList.add("active");
+    }
+
+    modeFile.addEventListener("click", () => {
+      matrixResult.classList.remove("active");
+      inputSelector.classList.remove("hidden");
+      setInputMode("file");
+    });
+
+    modeString.addEventListener("click", () => {
+      matrixResult.classList.remove("active");
+      inputSelector.classList.remove("hidden");
+      setInputMode("string");
+    });
+
+    document.getElementById("generateFromString").addEventListener("click", () => {
+      const value = stringInput.value || "";
+      const bytes = Array.from(value).map((char) => char.charCodeAt(0));
+      showMatrixOnly(bytes, "string");
+    });
+
+    document.getElementById("generateFromFile").addEventListener("click", async () => {
+      const selected = fileInput.files && fileInput.files[0];
+      if (!selected) return;
+      const content = await selected.arrayBuffer();
+      const view = new Uint8Array(content);
+      showMatrixOnly(Array.from(view), "file", selected.name);
+    });
+
+    function decodeToString(values) {
+      if (!values.length) return "";
+      const chunkSize = 4096;
+      let output = "";
+      for (let i = 0; i < values.length; i += chunkSize) {
+        const chunk = values.slice(i, i + chunkSize);
+        output += String.fromCharCode(...chunk);
+      }
+      return output;
+    }
+
+    document.getElementById("restoreInput").addEventListener("click", () => {
+      clearRestoreState();
+      const values = matrixState.values || [];
+      restorePanel.classList.add("active");
+
+      if (!values.length) {
+        restoreNote.textContent = "No matrix values to restore yet.";
+        return;
+      }
+
+      if (matrixState.mode === "string") {
+        restoreOutput.value = decodeToString(values);
+        restoreNote.textContent = "String mode is fully reversible because each cell is the original character code.";
+        return;
+      }
+
+      const uint = new Uint8Array(values);
+      const textPreview = new TextDecoder("utf-8", { fatal: false }).decode(uint);
+      restoreOutput.value = textPreview;
+      restoreNote.textContent = "File mode restores exact bytes. Text preview may look broken for binary files, so use download for accurate recovery.";
+
+      const blob = new Blob([uint], { type: "application/octet-stream" });
+      matrixState.downloadUrl = URL.createObjectURL(blob);
+      downloadRestoredFile.href = matrixState.downloadUrl;
+      downloadRestoredFile.download = `restored-${matrixState.fileName || "input.bin"}`;
+      downloadRestoredFile.classList.remove("hidden");
+    });
+
+    document.getElementById("backToInput").addEventListener("click", () => {
+      matrixResult.classList.remove("active");
+      inputSelector.classList.remove("hidden");
+      resetModeButtons();
+      fileInput.value = "";
+      stringInput.value = "";
+      matrixState.mode = null;
+      matrixState.values = [];
+      matrixState.fileName = "";
+      clearRestoreState();
+    });
   </script>
 </body>
 </html>
